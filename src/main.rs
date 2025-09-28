@@ -1,27 +1,25 @@
-use std::io;
-use crate::lexer::tokenize;
-use crate::parser::parse;
+use std::{
+    io,
+    env
+};
+use crate::commands::handle_commands;
 
 pub mod lexer;
 pub mod parser;
+pub mod interact_mode;
+pub mod commands;
 
 fn main() -> io::Result<()> {
-    let mut input: String = String::new();
-    println!("Brainfuck compiler v1.0.0. Enter program:");
-    loop {
-        input.clear();
-        io::stdin().read_line(&mut input).expect("Failed to read program");
-
-        if input.trim() == "exit" {
-            break;
-        }
-
-        let tokens = tokenize(&input);
-        parse(&tokens);
+    if let Err(e) = dotenvy::dotenv_override() {
+        eprintln!("Warning, failed to load .env file: {}", e);
     }
 
-    println!("Enter any symbol to close program");
-    io::stdin().read_line(&mut input).unwrap();
+    let args: Vec<String> = env::args().collect();
+    if args.len() > 1 {
+        handle_commands(args)?;
+    } else {
+        // Interactive mode
+    }
 
     Ok(())
 }
