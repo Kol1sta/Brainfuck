@@ -25,7 +25,7 @@ pub fn interactive_mode() -> io::Result<()> {
 
         match input.trim() {
             "run" => {
-                parse(tokenize(program.as_str()))?
+                parse(tokenize(program.as_str()))?;
             },
             "clear" => {
                 program.clear();

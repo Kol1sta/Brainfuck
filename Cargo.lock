@@ -3,7 +3,7 @@
 version = 4
 
 [[package]]
-name = "Brainfuck"
+name = "brainfuck"
 version = "1.0.0"
 dependencies = [
  "dotenvy",
