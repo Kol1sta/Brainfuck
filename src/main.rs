@@ -2,11 +2,13 @@ use std::{
     io,
     env
 };
-use crate::commands::handle_commands;
+use crate::{
+    commands::handle_commands,
+    interactive::interactive_mode
+};
 
-pub mod lexer;
-pub mod parser;
-pub mod interact_mode;
+pub mod interpreter;
+pub mod interactive;
 pub mod commands;
 
 fn main() -> io::Result<()> {
@@ -18,7 +20,7 @@ fn main() -> io::Result<()> {
     if args.len() > 1 {
         handle_commands(args)?;
     } else {
-        // Interactive mode
+        interactive_mode()?;
     }
 
     Ok(())

@@ -4,7 +4,7 @@ use std::{
     io,
     path::PathBuf
 };
-use crate::{
+use crate::interpreter::{
     lexer::tokenize,
     parser::parse
 };
@@ -21,7 +21,7 @@ pub fn handle_commands(args: Vec<String>) -> io::Result<()> {
             println!("\t-v, --version: display your version of brainfuck interpreter");
             println!("\nTo run a file, call the interpreter with your .bf file");
             println!("or run the interpreter without options to start interactive mode");
-        }
+        },
         file_name if file_name.starts_with("-") => {
             eprintln!("Unknown option: {}", file_name);
         },

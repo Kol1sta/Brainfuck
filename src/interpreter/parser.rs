@@ -1,5 +1,5 @@
 use std::{io, char};
-use crate::lexer::Tokens;
+use crate::interpreter::lexer::Tokens;
 
 pub fn parse(tokens: Vec<Tokens>) -> io::Result<()> {
     let mut stack: [u32; 30000] = [0; 30000];
